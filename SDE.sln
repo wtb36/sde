@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual C# Express 2005
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDEConsole", "SDEConsole\SDEConsole.csproj", "{3709841F-DDC0-4AC5-94E8-1A2D6FC75626}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDELib", "SDELib\SDELib.csproj", "{A82F1683-AB49-4E2F-8546-4A91A12EAC23}"
