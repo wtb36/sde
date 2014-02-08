@@ -5,13 +5,13 @@ using SDELib;
 
 namespace SDEConsole
 {
-	internal class ConstXX : ISDE
+	internal class ConstSqrtX : ISDE
 	{
 		private double m_Drift;
 
 		private double m_Diffusion;
 
-		public ConstXX(double Drift, double Diffusion)
+		public ConstSqrtX(double Drift, double Diffusion)
 		{
 			m_Drift = Drift;
 			m_Diffusion = Diffusion;
@@ -19,8 +19,8 @@ namespace SDEConsole
 
 		public void GetValue(double t, double x, ref double Drift, ref double Diffusion)
 		{
-			Drift = x * x * m_Drift;
-			Diffusion = x * x * m_Diffusion;
+			Drift = Math.Sqrt(x) * m_Drift;
+			Diffusion = Math.Sqrt(x) * m_Diffusion;
 		}
 
 		public double GetAnalytic(double t, double X0, double Wt)

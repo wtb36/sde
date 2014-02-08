@@ -50,5 +50,11 @@ namespace SDELib
 				+ (m_Diff2P - m_Diff2M - m_Diff1P + m_Diff1M)
 				* (m_DW * m_DW / 3 - dt) * m_DW;
 		}
+
+		public void Step(ref double t, double tEval,
+				ref double x, double xEval, double dt, double[] Z)
+		{
+			return;
+		}
 	}
 }

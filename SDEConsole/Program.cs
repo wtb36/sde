@@ -9,26 +9,43 @@ namespace SDEConsole
 	{
 		static void Main(string[] args)
 		{
-			ISDE sde = new ConstXs(0.1, -0.1);
+			ISDE sde = new ConstSin(1);
 			ISdeScheme scheme = new ExplicitEuler(sde);
 			ISdeScheme scheme1 = new KP11_1_3(sde);
 			ISdeScheme scheme2 = new O1_5expl(sde);
+			ISdeScheme exScheme = new Extrapolation(scheme);
+			ISdeScheme pc = new PredictorCorrector(scheme, scheme);
 			double t = 0;
 			double t1 = 0;
 			double t2 = 0;
-			double x = 1;
-			double x1 = 1;
-			double x2 = 1;
+			double te = 0;
+			double tpc = 0;
+			double x0 = 0.5;
+			double x = x0;
+			double x1 = x0;
+			double x2 = x0;
+			double xe = x0;
+			double xpc = x0;
 			double[] Z = new double[2];
+			double[] Ze = new double[2];
+			double dt = 0.001;
+			double T = 1;
+			double W = 0;
 			Console.WriteLine("{0} {1} {2} {3}", t, x, x1, x2);
-			while (t < 10)
+			while (t < T)
 			{
-				Z[0] = NormalGenerator.Value;
+				Ze[0] = NormalGenerator.Value;
+				Ze[1] = NormalGenerator.Value;
+				Z[0] = Math.Sqrt(0.5) * (Ze[0] + Ze[1]);
 				Z[1] = NormalGenerator.Value;
-				scheme.Step(ref t, ref x, 0.01, Z);
-				scheme1.Step(ref t1, ref x1, 0.01, Z);
-				scheme2.Step(ref t2, ref x2, 0.01, Z);
-				Console.WriteLine("{0} {1} {2} {3}", t, x, x1, x2);
+				W += Math.Sqrt(dt) * Z[0];
+				scheme.Step(ref t, ref x, dt, Z);
+				scheme1.Step(ref t1, ref x1, dt, Z);
+				scheme2.Step(ref t2, ref x2, dt, Z);
+				exScheme.Step(ref te, ref xe, dt, Ze);
+				pc.Step(ref tpc, ref xpc, dt, Z);
+				Console.WriteLine("{0} {1} {2} {3} {4} {5} {6} {7}",
+						t, x, x1, x2, xe, W, sde.GetAnalytic(t, x0, W), xpc);
 			}
 		}
 	}

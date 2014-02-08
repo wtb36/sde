@@ -22,5 +22,10 @@ namespace SDEConsole
 			Drift = m_Drift;
 			Diffusion = m_Diffusion;
 		}
+
+		public double GetAnalytic(double t, double X0, double Wt)
+		{
+			return X0 + m_Drift * t + m_Diffusion * Wt;
+		}
 	}
 }

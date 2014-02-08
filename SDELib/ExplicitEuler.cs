@@ -26,6 +26,14 @@ namespace SDELib
 			x += m_Drift * dt + m_Diffusion * Z[0] * Math.Sqrt(dt);
 		}
 
+		public void Step(ref double t, double tEval,
+				ref double x, double xEval, double dt, double[] Z)
+		{
+			m_Sde.GetValue(tEval, xEval, ref m_Drift, ref m_Diffusion);
+			t += dt;
+			x += m_Drift * dt + m_Diffusion * Z[0] * Math.Sqrt(dt);
+		}
+
 		#endregion
 	}
 }

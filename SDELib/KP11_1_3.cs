@@ -40,6 +40,20 @@ namespace SDELib
 				+ 0.5 * (m_Diff2 - m_Diffusion) * (Z[0] * Z[0] - 1) * m_Sdt;
 		}
 
+		public void Step(ref double t, double tEval,
+				ref double x, double xEval, double dt, double[] Z)
+		{
+			m_Sdt = Math.Sqrt(dt);
+
+			m_Sde.GetValue(tEval, xEval, ref m_Drift, ref m_Diffusion);
+			m_Y = x + m_Drift * dt + m_Diffusion * m_Sdt;
+			m_Sde.GetValue(tEval, m_Y, ref m_Dummy, ref m_Diff2);
+
+			t += dt;
+			x += m_Drift * dt + m_Diffusion * m_Sdt * Z[0]
+				+ 0.5 * (m_Diff2 - m_Diffusion) * (Z[0] * Z[0] - 1) * m_Sdt;
+		}
+
 		#endregion
 
 	}
