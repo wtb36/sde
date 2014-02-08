@@ -16,7 +16,7 @@ namespace SDEConsole
 			if (args.Length > 1)
 				T = Double.Parse(args[1]);
 
-			ISDE sde = new ConstSin(.5);
+			ISDE sde = new ConstX(.5, 0.2);
 			ISdeScheme scheme = new ExplicitEuler(sde);
 			ISdeScheme scheme1 = new KP11_1_3(sde);
 			ISdeScheme scheme2 = new O1_5expl(sde);
