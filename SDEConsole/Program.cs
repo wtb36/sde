@@ -9,12 +9,19 @@ namespace SDEConsole
 	{
 		static void Main(string[] args)
 		{
-			ISDE sde = new ConstSin(1);
+			double dt = 0.001;
+			double T = 1;
+			if (args.Length > 0)
+				dt = Double.Parse(args[0]);
+			if (args.Length > 1)
+				T = Double.Parse(args[1]);
+
+			ISDE sde = new ConstSin(.5);
 			ISdeScheme scheme = new ExplicitEuler(sde);
 			ISdeScheme scheme1 = new KP11_1_3(sde);
 			ISdeScheme scheme2 = new O1_5expl(sde);
 			ISdeScheme exScheme = new Extrapolation(scheme);
-			ISdeScheme pc = new PredictorCorrector(scheme, scheme);
+			ISdeScheme pc = new PredictorCorrector(scheme, scheme1);
 			double t = 0;
 			double t1 = 0;
 			double t2 = 0;
@@ -28,8 +35,6 @@ namespace SDEConsole
 			double xpc = x0;
 			double[] Z = new double[2];
 			double[] Ze = new double[2];
-			double dt = 0.001;
-			double T = 1;
 			double W = 0;
 			Console.WriteLine("{0} {1} {2} {3}", t, x, x1, x2);
 			while (t < T)

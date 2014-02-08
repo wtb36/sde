@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using SDELib;
 
-namespace SDEConsole
+namespace SDELib
 {
 	internal class ConstXX : ISDE
 	{

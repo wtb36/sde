@@ -7,6 +7,12 @@ gnuplot -persist << END
 #p "dat" u 1:6 w l, "" u 1:7 w l
 #set terminal x11 3
 #p "dat" u 1:(\$2-\$7) w l, "" u 1:(\$3-\$7) w l, "" u 1:(\$4-\$7) w l, "" u 1:(\$5-\$7) w l, "" u 1:(\$8-\$7) w l
-set terminal x11 4
-p "dat" u 1:8 w l, "" u 1:4 w l, "" u 1:7
+#set terminal x11 4
+#p "dat" u 1:8 w l title "Predictor-Corrector",\
+#"" u 1:2 w l title "Explicit Euler",\
+#"" u 1:4 w l title "O(1.5) strong",\
+#"" u 1:7 title "Analytical"
+set terminal x11
+p "dat" u 1:(\$2-\$7) w l title "Explicit Euler",\
+"" u 1:(\$4-\$7) w l title "O(1.5) strong"
 END
