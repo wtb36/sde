@@ -27,7 +27,7 @@ namespace SDELib
 
 		#region ISdeScheme Members
 
-		public void Step(ref double t, ref double x, double dt, double Z)
+		public void Step(ref double t, ref double x, double dt, double[] Z)
 		{
 			m_Sdt = Math.Sqrt(dt);
 
@@ -36,8 +36,8 @@ namespace SDELib
 			m_Sde.GetValue(t, m_Y, ref m_Dummy, ref m_Diff2);
 
 			t += dt;
-			x += m_Drift * dt + m_Diffusion * m_Sdt * Z
-				+ 0.5 * (m_Diff2 - m_Diffusion) * (Z * Z - 1) * m_Sdt;
+			x += m_Drift * dt + m_Diffusion * m_Sdt * Z[0]
+				+ 0.5 * (m_Diff2 - m_Diffusion) * (Z[0] * Z[0] - 1) * m_Sdt;
 		}
 
 		#endregion

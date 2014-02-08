@@ -19,11 +19,11 @@ namespace SDELib
 
 		#region ISdeScheme Members
 
-		public void Step(ref double t, ref double x, double dt, double Z)
+		public void Step(ref double t, ref double x, double dt, double[] Z)
 		{
 			m_Sde.GetValue(t, x, ref m_Drift, ref m_Diffusion);
 			t += dt;
-			x += m_Drift * dt + m_Diffusion * Z * Math.Sqrt(dt);
+			x += m_Drift * dt + m_Diffusion * Z[0] * Math.Sqrt(dt);
 		}
 
 		#endregion
