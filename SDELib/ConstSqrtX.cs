@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SDELib
 {
-	internal class ConstSqrtX : ISDE
+	public class ConstSqrtX : ISDE
 	{
 		private double m_Drift;
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SDELib
 {
-	class ConstSde : ISDE
+	public class ConstSde : ISDE
 	{
 		private double m_Drift;
 

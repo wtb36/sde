@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using SDELib;
 
-namespace SDEConsole
+namespace SDELib
 {
-	internal class ConstSin : ISDE
+	public class ConstSin : ISDE
 	{
 		private double m_Drift;
 		private double m_Drift2;
